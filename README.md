@@ -14,6 +14,8 @@ Data loading and preprocessing are handled via the TensorFlow `ImageDataGenerato
 * **Validation/Test Set:** Rescaled only ($1/255$) to maintain data integrity for evaluation.
 
 ## 2. Custom CNN Model Architecture
+![Model Architecture Graph](cnn_with_text.png)
+
 The model follows a "Mini-VGGNet" structure, sequentially increasing feature depth while reducing spatial dimensions.
 
 ### 2.1 The Convolution Layers (`Conv2D`)
