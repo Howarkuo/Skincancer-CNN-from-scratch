@@ -2,7 +2,7 @@
 
 A custom implementation of a **Mini-VGGNet** style Convolutional Neural Network built using **TensorFlow/Keras**. This model achieves high accuracy without pre-trained weights, leveraging custom data augmentation and dropout regularization.
 
-** Result:** Reached **89% Validation Accuracy**
+**Result:** Reached **89% Validation Accuracy**
 ![Training Graph](training_history.png)
 
 
