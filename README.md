@@ -1,6 +1,8 @@
 # Classical Convolutional Neural Network (CNN) for Skin Cancer Detection
 
 This project implements a **Mini-VGGNet** style Convolutional Neural Network built from scratch using **TensorFlow/Keras**. It is designed for the binary classification of skin lesions (Benign vs. Malignant), leveraging a custom architecture optimized for feature extraction and translation invariance.
+![Training Graph](training_history.png)
+
 
 ## 0. Initialization
 The environment is set up using **TensorFlow** with GPU support.
