@@ -4,11 +4,6 @@ A  **Mini-VGGNet** style Convolutional Neural Network built from scratch using *
 ![Training Graph](training_history.png)
 
 
-## 0. Initialization
-The environment is set up using **TensorFlow** with GPU support.
-- **Hardware:** NVIDIA Quadro RTX 8000 (48GB VRAM).
-- **Environment:** Custom Conda environment with `tensorflow`, `numpy`, `scikit-learn`, and `matplotlib`.
-
 ## 1. Data Configuration
 Data loading and preprocessing are handled via the TensorFlow `ImageDataGenerator`.
 
