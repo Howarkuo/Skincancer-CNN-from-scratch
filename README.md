@@ -36,6 +36,20 @@ We utilize Max Pooling with a pool size of **(2, 2)** after every convolution bl
 1.  **With Pooling (Flexible):** The layer detects a feature (e.g., a sharp edge) somewhere in a $2 \times 2$ block. If the edge moves by 1 pixel, the output remains the same. The result is **stable**.
 2.  **Without Pooling (Rigid):** The convolution layer detects an edge exactly at Pixel $(10, 10)$. If the lesion shifts just 1 pixel to the right to $(10, 11)$, the next layer looking at $(10, 10)$ might say, *"I don't see anything here anymore."*
 
+
+### 2.3 Training Mechanism: Forward & Backpropagation
+The model learns to distinguish benign from malignant lesions through an iterative cycle of **Forward Propagation** and **Backpropagation**:
+
+1.  **Forward Propagation (Inference):** * The input image passes *forward* through the network.
+    * **Convolutional layers** activate specific features (edges, textures).
+    * **Pooling layers** downsample the data.
+    * The **Sigmoid output** calculates a probability score (e.g., 0.85).
+    
+2.  **Backpropagation (Learning):**
+    * The model calculates the **Loss** (Error) by comparing its prediction (0.85) to the actual label (1.0).
+    * Using the **Chain Rule**, the model calculates the gradient of this error with respect to every single weight in the network.
+    * The optimizer updates the weights in the *reverse* direction (from Output → Input) to minimize the error for the next batch.
+
 ### 3. The Classifier Head
 Once features are extracted, the data moves to the Fully Connected (Dense) layers.
 * **Flatten:** Converts the 3D block of features (e.g., $28 \times 28 \times 128$) into a long 1D vector.
