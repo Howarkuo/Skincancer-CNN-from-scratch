@@ -89,3 +89,17 @@ The training accuracy graph shows significant volatility (e.g., a crash around e
 It is unusual for validation to perform better than training, but in this case, it is expected:
 1.  **High Dropout:** We use `Dropout(0.5)`, meaning the model is "crippled" by 50% during training (making it hard), but runs at full capacity during validation (making it easy).
 2.  **Data Augmentation:** The training images are constantly being rotated and distorted (hard to read), while the validation images are clean and perfectly centered.
+
+# Hand Written note of Forward Passing NN 
+![Note](Note Feb 12, 2026_page-0001.jpg)
+![Note](Note Feb 12, 2026_page-0002.jpg)
+![Note](Note Feb 12, 2026_page-0003.jpg)
+![Note](Note Feb 12, 2026_page-0004.jpg)
+![Note](Note Feb 12, 2026_page-0005.jpg)
+![Note](Note Feb 12, 2026_page-0006.jpg)
+![Note](Note Feb 12, 2026_page-0007.jpg)
+![Note](Note Feb 12, 2026_page-0008.jpg)
+![Note](Note Feb 12, 2026_page-0009.jpg)
+![Note](Note Feb 12, 2026_page-0010.jpg)
+![Note](Note Feb 12, 2026_page-0011.jpg)
+
