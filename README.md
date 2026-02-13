@@ -117,7 +117,7 @@ The project visualizes the activation functions using `matplotlib` and `sympy.la
 | **ReLU (Hidden Layer)** | **Sigmoid (Output Layer)** |
 | :---: | :---: |
 | Used to filter raw signals. Returns $x$ if positive, $0$ if negative. | Used to squash the final score into a probability between $0$ and $1$. |
-| ![ReLU Plot](NN_Oreilly\relu_plot.png) | ![Logistic Plot](NN_Oreilly\Logistic_plot.png) |
+| ![ReLU Plot](NN_Oreilly/relu_plot.png) | ![Logistic Plot](NN_Oreilly/Logistic_plot.png) |
 
 ---
 
@@ -164,7 +164,7 @@ $$\frac{\partial C}{\partial B_1} = \delta_1$$
 
 *(Note: $\odot$ denotes element-wise multiplication, derived from the Python logic `*` vs `@`)*
 
-References & Inspiration
+### References & Inspiration
 
 This project was heavily inspired by the foundational concepts taught in:
 
