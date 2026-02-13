@@ -1,5 +1,18 @@
-# Classical Convolutional Neural Network (CNN) from scratch for Skin Cancer Detection
+# Deep Learning from Scratch: From Math to CNNs
+This repository implements Neural Networks entirely from scratch using **NumPy** and **SymPy**. It focuses on the mathematical foundations of Deep Learning—specifically the **Chain Rule** and **Backpropagation**—without relying on high-level frameworks like TensorFlow or PyTorch for the core logic.
 
+The project is divided into two major implementations:
+1.  **The Application:** A Classical Convolutional Neural Network (CNN) for **Skin Cancer Detection**.
+2.  **The Foundation:** A Dense Neural Network for **Font Color Prediction**.
+
+## Table of Contents
+- [Project 1: Skin Cancer Detection (Classical CNN) ]
+(#-project-1-skin-cancer-detection-cnn)
+- [Project 2:Font Color Predictor (Dense NN) ](#-project-1-font-color-predictor)
+- [Mathematical Derivation (SymPy Verification)](#-mathematical-derivation-the-chain-rule)
+
+---
+## 1. Classical Convolutional Neural Network (CNN) from scratch for Skin Cancer Detection 
 A custom implementation of a **Mini-VGGNet** style Convolutional Neural Network built using **TensorFlow/Keras**. This model achieves high accuracy without pre-trained weights, leveraging custom data augmentation and dropout regularization.
 
 **Result:** Reached **89% Validation Accuracy**
@@ -89,6 +102,68 @@ The training accuracy graph shows significant volatility (e.g., a crash around e
 It is unusual for validation to perform better than training, but in this case, it is expected:
 1.  **High Dropout:** We use `Dropout(0.5)`, meaning the model is "crippled" by 50% during training (making it hard), but runs at full capacity during validation (making it easy).
 2.  **Data Augmentation:** The training images are constantly being rotated and distorted (hard to read), while the validation images are clean and perfectly centered.
+
+##  2. Neural Network Architecture
+
+* **Input Layer:** 3 Neurons (Red, Green, Blue values, normalized to 0-1).
+* **Hidden Layer:** 3 Neurons (Activation: **ReLU**).
+* **Output Layer:** 1 Neuron (Activation: **Sigmoid/Logistic**).
+    * Output -> 0: Light Font
+    * Output -> 1: Dark Font
+
+### Activation Functions Used
+The project visualizes the activation functions using `matplotlib` and `sympy.lambdify`.
+
+| **ReLU (Hidden Layer)** | **Sigmoid (Output Layer)** |
+| :---: | :---: |
+| Used to filter raw signals. Returns $x$ if positive, $0$ if negative. | Used to squash the final score into a probability between $0$ and $1$. |
+| ![ReLU Plot](relu_plot.png) | ![Logistic Plot](Logistic_plot.png) |
+
+---
+
+##  Mathematical Derivation (The Chain Rule)
+
+This project calculates gradients manually without using libraries like TensorFlow or PyTorch. Below are the formulas derived using the **SymPy** script included in the project.
+
+### 1. Variables & Definitions
+* $X$: Input Data
+* $W_1, B_1$: Weights and Biases for Hidden Layer
+* $Z_1$: Raw Hidden Signal ($W_1 X + B_1$)
+* $A_1$: Activated Hidden Signal ($\text{ReLU}(Z_1)$)
+* $W_2, B_2$: Weights and Biases for Output Layer
+* $Z_2$: Raw Output Score ($W_2 A_1 + B_2$)
+* $A_2$: Final Probability ($\text{Sigmoid}(Z_2)$)
+* $Y$: Actual Label (Target)
+
+### 2. Cost Function
+We use the Squared Error cost function:
+$$C = (A_2 - Y)^2$$
+
+### 3. Backpropagation Formulas
+To minimize the cost, we update weights using gradients calculated via the **Chain Rule**.
+
+#### **Layer 2 Gradients (Output)**
+We calculate the error term $\delta_2$ for the output layer:
+$$\frac{\partial C}{\partial A_2} = 2(A_2 - Y)$$
+$$\frac{\partial A_2}{\partial Z_2} = \sigma(Z_2) \cdot (1 - \sigma(Z_2))$$
+$$\delta_2 = 2(A_2 - Y) \odot \sigma'(Z_2)$$
+
+**Gradients:**
+$$\frac{\partial C}{\partial W_2} = \delta_2 \cdot A_1^T$$
+$$\frac{\partial C}{\partial B_2} = \delta_2$$
+
+#### **Layer 1 Gradients (Hidden)**
+We propagate the error backwards to finding $\delta_1$:
+$$\frac{\partial Z_2}{\partial A_1} = W_2$$
+$$\frac{\partial A_1}{\partial Z_1} = \text{Heaviside}(Z_1) \quad (\text{Derivative of ReLU})$$
+$$\delta_1 = (W_2^T \cdot \delta_2) \odot \text{Heaviside}(Z_1)$$
+
+**Gradients:**
+$$\frac{\partial C}{\partial W_1} = \delta_1 \cdot X^T$$
+$$\frac{\partial C}{\partial B_1} = \delta_1$$
+
+*(Note: $\odot$ denotes element-wise multiplication, derived from the Python logic `*` vs `@`)*
+
 
 # Hand Written note of Forward Passing NN 
 ![Note](<Note Feb 12, 2026_page-0001.jpg>)
