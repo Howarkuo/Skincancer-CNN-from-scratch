@@ -12,7 +12,7 @@ The project is divided into two major implementations:
 - [Mathematical Derivation (SymPy Verification)](#-mathematical-derivation-the-chain-rule)
 
 ---
-## 1. Classical Convolutional Neural Network (CNN) from scratch for Skin Cancer Detection 
+# Classical Convolutional Neural Network (CNN) from scratch for Skin Cancer Detection 
 A custom implementation of a **Mini-VGGNet** style Convolutional Neural Network built using **TensorFlow/Keras**. This model achieves high accuracy without pre-trained weights, leveraging custom data augmentation and dropout regularization.
 
 **Result:** Reached **89% Validation Accuracy**
@@ -103,7 +103,7 @@ It is unusual for validation to perform better than training, but in this case, 
 1.  **High Dropout:** We use `Dropout(0.5)`, meaning the model is "crippled" by 50% during training (making it hard), but runs at full capacity during validation (making it easy).
 2.  **Data Augmentation:** The training images are constantly being rotated and distorted (hard to read), while the validation images are clean and perfectly centered.
 
-##  2. Neural Network Architecture
+# Neural Network Architecture
 
 * **Input Layer:** 3 Neurons (Red, Green, Blue values, normalized to 0-1).
 * **Hidden Layer:** 3 Neurons (Activation: **ReLU**).
