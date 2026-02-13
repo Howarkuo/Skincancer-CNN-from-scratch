@@ -163,6 +163,74 @@ $$\frac{\partial C}{\partial W_1} = \delta_1 \cdot X^T$$
 $$\frac{\partial C}{\partial B_1} = \delta_1$$
 
 *(Note: $\odot$ denotes element-wise multiplication, derived from the Python logic `*` vs `@`)*
+```
+L= 0.05
+
+all_inputs= (all_data.iloc[:,0:3].values/255.0)
+all_outputs = all_data.iloc[:, -1].values
+X_train, X_test, Y_train, Y_test=train_test_split(all_inputs,all_outputs,test_size=1/3)
+
+n=X_train.shape[0]
+
+# randomized initiation
+w_hidden=np.random.rand(3,3)
+w_output=np.random.rand(1,3)
+
+
+b_hidden=np.random.rand(3,1)
+b_output=np.random.rand(1,1)
+# lamba : anonymous function
+relu= lambda x: np.maximum(x,0)
+logistic= lambda x: 1/ (1+np.exp(-x))
+
+def forward_prop(x):
+    Z1= w_hidden @ x + b_hidden
+    A1= relu(Z1)
+    Z2 = w_output @A1 + b_output
+    A2 = logistic(Z2)
+    return Z1, A1, Z2, A2
+
+d_relu = lambda x: x >0
+d_logistic = lambda x: np.exp(-x) / (1+np.exp(-x)) **2
+
+
+def back_prop(Z1, A1, Z2, A2, X,Y,w_output):
+    dC_dA2 = 2 * (A2 -Y)
+    dA2_dZ2 = d_logistic(Z2)
+    delta2= dC_dA2 * dA2_dZ2
+
+    # layer 2 gradient
+    dC_dW2 = delta2 @ A1.T
+    dC_dB2 = delta2 
+    # layer 1 error
+    dZ2_dA1 = w_output
+    dA1_dZ1 = d_relu(Z1)
+    delta1 = (dZ2_dA1.T @ delta2) * dA1_dZ1
+
+    # layer 1 gradients
+    dC_dW1 = delta1 @ X.T
+    dC_dB1= delta1
+
+for i in range (100_000):
+    idx = np.random.choice(n ,1 , replace= False)
+    X_sample = X_train[idx].transpose()
+    Y_sample = Y_train[idx]
+
+    Z1, A1, Z2, A2 = forward_prop(X_sample)
+
+    dW1, dB1, dW2, dB2 = back_prop(Z1, A1, Z2, A2, X_sample, Y_sample, w_output)
+    w_hidden -= L *dW1
+    b_hidden -= L *dB1
+    w_output -= L *dW2
+    b_output -= L *dB2
+
+testpredictions= forward_prop(X_test.transpose())[3]
+testcomparisons= np.equal((testpredictions >= .5).flatten().astype(int),Y_test)
+accuracy = sum(testcomparisons.astype(int)/X_test.shape[0])
+
+print("accuracy",accuracy)
+# accuracy 0.9910913140311729
+```
 
 ### References & Inspiration
 
