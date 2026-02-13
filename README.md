@@ -117,7 +117,7 @@ The project visualizes the activation functions using `matplotlib` and `sympy.la
 | **ReLU (Hidden Layer)** | **Sigmoid (Output Layer)** |
 | :---: | :---: |
 | Used to filter raw signals. Returns $x$ if positive, $0$ if negative. | Used to squash the final score into a probability between $0$ and $1$. |
-| ![ReLU Plot](relu_plot.png) | ![Logistic Plot](Logistic_plot.png) |
+| ![ReLU Plot](NN_Oreilly\relu_plot.png) | ![Logistic Plot](NN_Oreilly\Logistic_plot.png) |
 
 ---
 
@@ -164,7 +164,16 @@ $$\frac{\partial C}{\partial B_1} = \delta_1$$
 
 *(Note: $\odot$ denotes element-wise multiplication, derived from the Python logic `*` vs `@`)*
 
+References & Inspiration
 
+This project was heavily inspired by the foundational concepts taught in:
+
+* **Essential Math for Data Science: Take Control of Your Data with Fundamental Linear Algebra, Probability, and Statistics**
+    * *Author:* Thomas Nield
+    * *Publisher:* O'Reilly Media
+    * *Key Concepts Applied:* Linear Algebra for Neural Networks, Calculus (Chain Rule), and Probability.
+
+This repository serves as a practical implementation of the mathematical theories discussed in Chapters 4 (Linear Algebra) and 5 (Calculus) of the book.
 # Hand Written note of Forward Passing NN 
 ![Note](<Note Feb 12, 2026_page-0001.jpg>)
 ![Note](<Note Feb 12, 2026_page-0002.jpg>)
